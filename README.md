@@ -1,4 +1,5 @@
-# TopDownShooter
+# CrypticDungeon
+Top down shooter made with Unity3D.
 <br>-Implemented 3 different types of enemies using inheritance.
 <br>-Implemented special kind of enemy with unity animation events.
 <br>-Implemented weapon system with option to swap weapons on pickup.
