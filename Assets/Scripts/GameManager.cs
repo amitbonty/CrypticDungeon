@@ -4,19 +4,19 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
-    public GameObject GameStartPanel;
-    public static int score;
-    public TextMeshProUGUI scoreText,scoreText1;
-    public GameObject GameOverPanel;
-    private void Start()
-    {
-    }
+    [SerializeField]
+    private GameObject GameStartPanel;
+    [SerializeField]
+    private TextMeshProUGUI scoreText,scoreText1;
+    [SerializeField]
+    private GameObject GameOverPanel;
+    public int score;
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Main");
-
     }
     public void QuitGame()
     {
@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         StartCoroutine(GameComplete());
-        Debug.Log("GameOver");
     }
     private void Update()
     {
@@ -36,7 +35,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2f);
         GameOverPanel.SetActive(true);
-
     }
     public void Lobby()
     {

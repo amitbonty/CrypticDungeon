@@ -5,16 +5,22 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
-    public Rigidbody2D rb;
     private Vector2 moveVelocity;
-    public int health;
-    public GameObject[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
     private Animator animator;
-    public GameObject DeathPrefab;
-    public GameManager instance;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private Rigidbody2D rb;
+    [SerializeField]
+    private int health;
+    [SerializeField]
+    private GameObject[] hearts;
+    [SerializeField]
+    private Sprite fullHeart;
+    [SerializeField]
+    private Sprite emptyHeart;
+    [SerializeField]
+    private GameObject DeathPrefab;
     void Start()
     {
         if (this.gameObject != null)
@@ -24,15 +30,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput.normalized * speed;
-       if(health <= 0)
-        {
-            
-        }
     }
     private void FixedUpdate()
     {
@@ -40,12 +41,10 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, transform.localScale.y, 0f);
             animator.SetBool("isWalking", true);
-
         }
         else if (Input.GetAxisRaw("Horizontal") > 0)
         {
             transform.localScale = new Vector3(1, transform.localScale.y, 0f);
-            /* animator.SetTrigger("isWalking");*/
             animator.SetBool("isWalking", true);
         }
         else
@@ -63,23 +62,20 @@ public class PlayerMovement : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            instance.GameOver();
+            GameManager.Instance.GameOver();
             Instantiate(DeathPrefab, transform.position, Quaternion.identity);
-            
         }
     }
-    public void ChangeWeapon(weapon weaponToEquip)
+    public void ChangeWeapon(Weapon weaponToEquip)
     {
         Destroy(GameObject.FindGameObjectWithTag("Weapon"));
         Instantiate(weaponToEquip, transform.position + new Vector3(0,1,0), transform.rotation, transform);
-        weaponToEquip.gameObject.GetComponent<weapon>().enabled = true;
+        weaponToEquip.gameObject.GetComponent<Weapon>().enabled = true;
     }
     void UpdateHealthUI(int currentHealth)
     {
-
         for (int i = 0; i < hearts.Length; i++)
         {
-
             if (i < currentHealth)
             {
                 hearts[i].GetComponent<Image>().sprite = fullHeart;
@@ -89,9 +85,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 hearts[i].GetComponent<Image>().enabled = false;
             }
-
         }
-
     }
     public void Heal(int healAmount)
     {

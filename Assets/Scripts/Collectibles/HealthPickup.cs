@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-
     PlayerMovement playerScript;
-    public int healAmount;
-
-    public GameObject effect;
+    [SerializeField]
+    private int healAmount;
+    [SerializeField]
+    private GameObject effect;
 
     private void Start()
     {
@@ -19,10 +19,8 @@ public class HealthPickup : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-          /*  Instantiate(effect, transform.position, Quaternion.identity);*/
             playerScript.Heal(healAmount);
             Destroy(gameObject);
         }
     }
-
 }

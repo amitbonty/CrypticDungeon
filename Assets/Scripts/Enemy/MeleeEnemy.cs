@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemy : Enemies { 
+public class MeleeEnemy : Enemies {
 
-    public float stopDistance;
+    [SerializeField]
+    private float stopDistance;
+    [SerializeField]
+    private float attackSpeed;
     private float attackTime;
-    public float attackSpeed;
     
     // Update is called once per frame
     void Update()
@@ -35,7 +37,6 @@ public class MeleeEnemy : Enemies {
         float percent = 0;
         while(percent <=1)
         {
-
             percent += Time.deltaTime * attackSpeed;
             float formula = (-Mathf.Pow(percent, 2) + percent) * 4;
             transform.position = Vector2.Lerp(originalPosition, targetPosition, formula);

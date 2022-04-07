@@ -12,22 +12,19 @@ public class WaveSpawner : MonoBehaviour
         public int count;
         public float timeBetweenSpawns;
     }
-
-    public Wave[] waves;
-    public Transform[] spawnPoints;
-    public float timeBetweenWaves;
-    public GameManager instance;
-
+    [SerializeField]
+    Wave[] waves;
+    [SerializeField]
+    Transform[] spawnPoints;
+    [SerializeField]
+    float timeBetweenWaves;
+    [SerializeField]
+    GameObject healthBar;
+     
     private Wave currentWave;
     private int currentWaveIndex;
     private Transform player;
-
     private bool spawningFinished;
-
-    public GameObject boss;
-    public Transform bossSpawnPoint;
-
-    public GameObject healthBar;
 
 
     private void Start()
@@ -38,7 +35,6 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-
         if (spawningFinished == true && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             spawningFinished = false;
@@ -49,12 +45,9 @@ public class WaveSpawner : MonoBehaviour
             }
             else
             {
-                instance.GameOver();
+                GameManager.Instance.GameOver();
             }
-
         }
-
-
     }
 
     IEnumerator CallNextWave(int waveIndex)
@@ -66,10 +59,8 @@ public class WaveSpawner : MonoBehaviour
     IEnumerator SpawnWave(int waveIndex)
     {
         currentWave = waves[waveIndex];
-
         for (int i = 0; i < currentWave.count; i++)
         {
-
             if (player == null)
             {
                 yield break;
@@ -86,12 +77,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 spawningFinished = false;
             }
-
             yield return new WaitForSeconds(currentWave.timeBetweenSpawns);
-
         }
-
-
     }
-
 }

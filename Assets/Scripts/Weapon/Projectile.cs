@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed;
-    public float lifeTime;
-    public GameObject explosion;
-    public int damage;
+    [SerializeField]
+    float speed;
+    [SerializeField]
+    float lifeTime;
+    [SerializeField]
+    GameObject explosion;
+    [SerializeField]
+    int damage;
     void Start()
     {
         Invoke("DestroyProjectile", lifeTime);
     }
-
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector2.up * speed * Time.deltaTime);
@@ -27,7 +29,6 @@ public class Projectile : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<Enemies>())
         {
-           
             Enemies enemy = collision.GetComponent<Enemies>();
             if(enemy.health <= 0)
             {
@@ -36,7 +37,6 @@ public class Projectile : MonoBehaviour
             }
             collision.GetComponent<Enemies>().TakeDamage(damage);
             DestroyProjectile();
-           
         }
     }
 }

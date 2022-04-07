@@ -6,15 +6,16 @@ public class EnemyBullet : MonoBehaviour
 {
     private PlayerMovement playerScript;
     private Vector2 targetPosition;
-    public float speed;
-    public int damage;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private int damage;
     void Start()
     {
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         targetPosition = playerScript.transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Vector2.Distance(transform.position, targetPosition) > 0.1f)

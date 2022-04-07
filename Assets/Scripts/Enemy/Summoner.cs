@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Summoner : Enemies
 {
-    public float minX,maxX,minY,maxY;
+    [SerializeField]
+    float minX,maxX,minY,maxY;
     private Vector2 targetPosition;
-    public float timeBetweensummons;
-    private float summonTime;
-    public GameObject enemyToSummon;
+    [SerializeField]
+    float timeBetweenSummons;
+    [SerializeField]
+    float summonTime;
+    [SerializeField]
+    GameObject enemyToSummon;
 
     public override void Start()
     {
@@ -24,21 +28,18 @@ public class Summoner : Enemies
     {
         if(player!=null)
         {
-            
             if (Vector2.Distance(transform.position, targetPosition) > .05f)
             {
                 transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-                Debug.Log("Called1");
             }
             else
             {
                 if(Time.time >= summonTime)
                 {
-                    summonTime = Time.time + timeBetweensummons;
+                    summonTime = Time.time + timeBetweenSummons;
                 }
             }
-        }
-        
+        }   
     }
     public void Summon()
     {

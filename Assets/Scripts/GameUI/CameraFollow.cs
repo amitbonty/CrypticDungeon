@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player;
-    public float speed;
- 
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
+    [SerializeField]
+    private Transform player;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float minX;
+    [SerializeField]
+    private float maxX;
+    [SerializeField]
+    private float minY;
+    [SerializeField]
+    private float maxY;
     void Start()
     {
         transform.position = player.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (player != null)
