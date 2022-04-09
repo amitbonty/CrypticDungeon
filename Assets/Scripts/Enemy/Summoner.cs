@@ -6,38 +6,25 @@ public class Summoner : Enemies
 {
     [SerializeField]
     float minX,maxX,minY,maxY;
-    private Vector2 targetPosition;
-    [SerializeField]
-    float timeBetweenSummons;
-    [SerializeField]
-    float summonTime;
     [SerializeField]
     GameObject enemyToSummon;
-
+    private Vector3 targetPosition;
+    
     public override void Start()
     {
         base.Start();
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
-        targetPosition = new Vector2(randomX, randomY);
+        targetPosition = new Vector3(randomX, randomY,0f);
         InvokeRepeating("Summon", 5f, 5f);
     }
-
- 
     private void Update()
     {
         if(player!=null)
         {
-            if (Vector2.Distance(transform.position, targetPosition) > .05f)
+            if (transform.position==targetPosition)
             {
                 transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            }
-            else
-            {
-                if(Time.time >= summonTime)
-                {
-                    summonTime = Time.time + timeBetweenSummons;
-                }
             }
         }   
     }

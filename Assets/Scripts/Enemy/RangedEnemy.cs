@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class RangedEnemy : Enemies
 {
-    float attackTime;
-    [SerializeField]
-    float stopDistance;
     [SerializeField]
     GameObject enemyBullet;
     [SerializeField]
     Transform shotPoint;
+    public bool isInRange;
     public override void Start()
     {
         base.Start();
@@ -19,19 +17,21 @@ public class RangedEnemy : Enemies
 
     void Update()
     {
-        if (player != null)
+        if (player != null && !isInRange)
         {
-            if (Vector2.Distance(transform.position, player.position) > stopDistance)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-            }
-            else
-            {
-                if (Time.time >= attackTime)
-                {
-                    attackTime = Time.time + timeBetweenAttacks;
-                }
-            }
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.GetComponent<PlayerMovement>())
+        {
+            isInRange = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.GetComponent<PlayerMovement>())
+        {
+            isInRange = false;
         }
     }
     public void RangedAttack()

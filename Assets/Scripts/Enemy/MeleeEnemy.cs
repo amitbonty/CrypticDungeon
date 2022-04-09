@@ -3,30 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeEnemy : Enemies {
-
-    [SerializeField]
-    private float stopDistance;
     [SerializeField]
     private float attackSpeed;
     private float attackTime;
+    public bool isInRange;
+    private Coroutine attack;
     
-    // Update is called once per frame
+
     void Update()
     {
-        if(player != null)
+        if(player != null&&!isInRange)
         {
-            if(Vector2.Distance(transform.position , player.position) > stopDistance)
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed*Time.deltaTime);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.GetComponent<PlayerMovement>())
+        {
+            isInRange = true;
+            if (Time.time >= attackTime)
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, speed*Time.deltaTime);
+                attackTime = Time.time + timeBetweenAttacks;
+                StartAttackRoutine();
             }
-            else
-            {
-                if(Time.time >= attackTime)
-                {
-                    attackTime = Time.time + timeBetweenAttacks;
-                    StartCoroutine(Attack());
-                }
-            }
+       }  
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.GetComponent<PlayerMovement>())
+        {
+        isInRange = false;
         }
     }
     IEnumerator Attack()
@@ -42,8 +49,14 @@ public class MeleeEnemy : Enemies {
             transform.position = Vector2.Lerp(originalPosition, targetPosition, formula);
             yield return null;
         }
-       
     }
+    void StartAttackRoutine()
+    {
+       if(attack==null)
+       {
+        attack=StartCoroutine(Attack());
+       }
+    } 
 }
 
 

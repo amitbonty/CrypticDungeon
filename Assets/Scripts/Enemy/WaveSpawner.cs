@@ -29,7 +29,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        player = PlayerMovement.Instance.transform;
         StartCoroutine(CallNextWave(currentWaveIndex));
     }
 

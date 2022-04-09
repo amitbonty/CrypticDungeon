@@ -10,15 +10,17 @@ public class EnemyBullet : MonoBehaviour
     private float speed;
     [SerializeField]
     private int damage;
+    [SerializeField]
+    Rigidbody2D rb;
     void Start()
     {
-        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        playerScript = PlayerMovement.Instance;
         targetPosition = playerScript.transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if(Vector2.Distance(transform.position, targetPosition) > 0.1f)
+        if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         }
@@ -27,9 +29,9 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.GetComponent<PlayerMovement>())
+        if(collision.gameObject.GetComponent<PlayerMovement>())
         {
             playerScript.TakeDamage(damage);
             Destroy(gameObject);

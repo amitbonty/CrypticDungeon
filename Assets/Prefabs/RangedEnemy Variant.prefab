@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7428348647701257331
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2952436085087623066}
-  m_Layer: 0
-  m_Name: ShotPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2952436085087623066
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7428348647701257331}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.446, y: 0.543, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3182275766860281632}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4809837954842559775
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -87,23 +57,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78cc16cf28607554b8176c32c69af6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
-  player: {fileID: 0}
   speed: 5
   timeBetweenAttacks: 10
   damage: 1
-  pickupChance: 20
-  pickups:
-  - {fileID: 7082115123594697946, guid: 9aa1e180c3246d545a0aa56c6dd6196c, type: 3}
-  - {fileID: 7082115123594697946, guid: 35bd65f1b84c730468872554904edfb5, type: 3}
+  pickUpChance: 0
+  pickUps: []
   healthPickupChance: 0
   healthPickup: {fileID: 0}
   deathEffect: {fileID: 59357583046723233, guid: e2719551d62f92d47add97490c941f13,
     type: 3}
-  stopDistance: 10
+  health: 5
   enemyBullet: {fileID: 6913374680374684182, guid: cf777c5d268b5ae498a6677c09951836,
     type: 3}
   shotPoint: {fileID: 2952436085087623066}
+  isInRange: 0
 --- !u!114 &2434953146004235813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,17 +83,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b900a069300bd040824da1ba117574a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  player: {fileID: 0}
   speed: 5
   timeBetweenAttacks: 0
   damage: 5
-  pickupChance: 0
-  pickups: []
+  pickUpChance: 0
+  pickUps: []
   healthPickupChance: 0
   healthPickup: {fileID: 0}
   deathEffect: {fileID: 59357583046723233, guid: e2719551d62f92d47add97490c941f13,
     type: 3}
+  health: 10
+--- !u!1 &7428348647701257331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2952436085087623066}
+  m_Layer: 9
+  m_Name: ShotPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2952436085087623066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428348647701257331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.446, y: 0.543, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3182275766860281632}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7429886134974509632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134,6 +130,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7019298630863294206, guid: a03ef193c87f2c44cbede11a1edff7cc,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -7019298630863294206, guid: a03ef193c87f2c44cbede11a1edff7cc,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5419506969550194016, guid: a03ef193c87f2c44cbede11a1edff7cc,
         type: 3}
       propertyPath: m_RootOrder
@@ -152,7 +158,7 @@ PrefabInstance:
     - target: {fileID: 5419506969550194016, guid: a03ef193c87f2c44cbede11a1edff7cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.250025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5419506969550194016, guid: a03ef193c87f2c44cbede11a1edff7cc,
         type: 3}
@@ -195,6 +201,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 8bfadec067237c04ab16144f6847e733,
         type: 3}
+    - target: {fileID: 5419506969550194018, guid: a03ef193c87f2c44cbede11a1edff7cc,
+        type: 3}
+      propertyPath: m_Radius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419506969550194018, guid: a03ef193c87f2c44cbede11a1edff7cc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419506969550194018, guid: a03ef193c87f2c44cbede11a1edff7cc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5419506969550194021, guid: a03ef193c87f2c44cbede11a1edff7cc,
         type: 3}
       propertyPath: m_Name
@@ -231,10 +252,10 @@ PrefabInstance:
       value: 2.4
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5419506969550194018, guid: a03ef193c87f2c44cbede11a1edff7cc, type: 3}
     - {fileID: 5419506969550194019, guid: a03ef193c87f2c44cbede11a1edff7cc, type: 3}
     - {fileID: 5419506969550194020, guid: a03ef193c87f2c44cbede11a1edff7cc, type: 3}
     - {fileID: 6061846505939395797, guid: a03ef193c87f2c44cbede11a1edff7cc, type: 3}
+    - {fileID: 7615545279640855438, guid: a03ef193c87f2c44cbede11a1edff7cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a03ef193c87f2c44cbede11a1edff7cc, type: 3}
 --- !u!1 &3182275766860281637 stripped
 GameObject:

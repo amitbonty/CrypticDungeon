@@ -12,7 +12,7 @@ public class HealthPickup : MonoBehaviour
 
     private void Start()
     {
-        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        playerScript = PlayerMovement.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
