@@ -26,7 +26,7 @@ public class Enemies : MonoBehaviour
 
     public virtual void Start()
     {
-        player = PlayerMovement.Instance.transform;
+        player = Player.Instance.transform;
     }
 
     public void TakeDamage(int amount)
@@ -47,7 +47,8 @@ public class Enemies : MonoBehaviour
                 Instantiate(healthPickup, transform.position, transform.rotation);
             }
             Instantiate(deathEffect, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
+            //Destroy(this.gameObject);
         }
     }
   

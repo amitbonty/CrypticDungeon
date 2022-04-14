@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
     public void DestroyProjectile()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

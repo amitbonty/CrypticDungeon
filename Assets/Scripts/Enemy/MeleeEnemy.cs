@@ -19,7 +19,7 @@ public class MeleeEnemy : Enemies {
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.GetComponent<PlayerMovement>())
+        if(other.GetComponent<Player>())
         {
             isInRange = true;
             if (Time.time >= attackTime)
@@ -31,14 +31,14 @@ public class MeleeEnemy : Enemies {
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerMovement>())
+        if (other.GetComponent<Player>())
         {
         isInRange = false;
         }
     }
     IEnumerator Attack()
     {
-        player.GetComponent<PlayerMovement>().TakeDamage(damage);
+        Player.Instance.TakeDamage(damage);
         Vector2 originalPosition = transform.position;
         Vector2 targetPosition = player.position;
         float percent = 0;

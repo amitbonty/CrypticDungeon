@@ -23,13 +23,13 @@ public class RangedEnemy : Enemies
         }
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.GetComponent<PlayerMovement>())
+        if(other.GetComponent<Player>())
         {
             isInRange = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other) {
-        if(other.GetComponent<PlayerMovement>())
+        if(other.GetComponent<Player>())
         {
             isInRange = false;
         }

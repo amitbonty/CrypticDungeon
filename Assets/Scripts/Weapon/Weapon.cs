@@ -25,6 +25,7 @@ public class Weapon : MonoBehaviour
             if(Time.time >= shotTime)
             {
                 Instantiate(projectile, shotPoint.position, transform.rotation);
+                ObjectPool.Instance.GetPooledObject("bullet",shotPoint.position, transform.rotation);
                 cameraAnim.SetTrigger("cameraShake");
                 shotTime = Time.time + timeBetweenShots;
             }

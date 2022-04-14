@@ -29,7 +29,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
-        player = PlayerMovement.Instance.transform;
+        player = Player.Instance.transform;
         StartCoroutine(CallNextWave(currentWaveIndex));
     }
 
@@ -67,7 +67,8 @@ public class WaveSpawner : MonoBehaviour
             }
             Enemies randomEnemy = currentWave.enemies[Random.Range(0, currentWave.enemies.Length)];
             Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(randomEnemy, randomSpawnPoint.position, transform.rotation);
+            ObjectPool.Instance.GetPooledObject(randomEnemy.name, randomSpawnPoint.position, transform.rotation);
+           // Instantiate(randomEnemy, randomSpawnPoint.position, transform.rotation);
 
             if (i == currentWave.count - 1)
             {

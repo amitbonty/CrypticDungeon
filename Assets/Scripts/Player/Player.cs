@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoSingleton<PlayerMovement>
+public class Player : MonoSingleton<Player>
 {
     private Vector2 moveVelocity;
     private Animator animator;

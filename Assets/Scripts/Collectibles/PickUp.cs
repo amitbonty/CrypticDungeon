@@ -13,7 +13,7 @@ public class PickUp : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerMovement>().ChangeWeapon(weaponToEquip);
+            collision.GetComponent<Player>().ChangeWeapon(weaponToEquip);
             Destroy(gameObject);
         }
     }

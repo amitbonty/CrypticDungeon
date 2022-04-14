@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    private PlayerMovement playerScript;
+    private Player playerScript;
     private Vector2 targetPosition;
     [SerializeField]
     private float speed;
@@ -14,7 +14,7 @@ public class EnemyBullet : MonoBehaviour
     Rigidbody2D rb;
     void Start()
     {
-        playerScript = PlayerMovement.Instance;
+        playerScript = Player.Instance;
         targetPosition = playerScript.transform.position;
     }
 
@@ -31,7 +31,7 @@ public class EnemyBullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<PlayerMovement>())
+        if(collision.gameObject.GetComponent<Player>())
         {
             playerScript.TakeDamage(damage);
             Destroy(gameObject);

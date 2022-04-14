@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    PlayerMovement playerScript;
+    Player playerScript;
     [SerializeField]
     private int healAmount;
     [SerializeField]
@@ -12,7 +12,7 @@ public class HealthPickup : MonoBehaviour
 
     private void Start()
     {
-        playerScript = PlayerMovement.Instance;
+        playerScript = Player.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
